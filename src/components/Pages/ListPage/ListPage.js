@@ -7,8 +7,9 @@ class ListPage extends Component {
     this.props.dispatch({ type: "GET_LIST" });
   }
 
-  clickPoster = () => {
-    this.props.history.push("/details");
+  clickPoster = (id) => (event) => {
+    console.log(id);
+    // this.props.history.push("/details");
   };
 
   render() {
@@ -16,6 +17,7 @@ class ListPage extends Component {
       return (
         <Movie
           key={index}
+          id={movie.id}
           title={movie.title}
           poster={movie.poster}
           description={movie.description}

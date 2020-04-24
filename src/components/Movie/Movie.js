@@ -5,7 +5,7 @@ class Movie extends Component {
     return (
       <div>
         <img
-          onClick={this.props.clickPoster}
+          onClick={this.props.clickPoster(this.props.id)}
           src={this.props.poster}
           alt="poster"
         />
