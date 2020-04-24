@@ -4,7 +4,11 @@ class Movie extends Component {
   render() {
     return (
       <div>
-        <img src={this.props.poster} alt="poster" />
+        <img
+          onClick={this.props.clickPoster}
+          src={this.props.poster}
+          alt="poster"
+        />
         <h3>{this.props.title}</h3>
         <p>{this.props.description}</p>
       </div>

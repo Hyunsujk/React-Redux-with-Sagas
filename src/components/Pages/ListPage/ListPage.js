@@ -6,6 +6,11 @@ class ListPage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
   }
+
+  clickPoster = () => {
+    this.props.history.push("/details");
+  };
+
   render() {
     const movie = this.props.store.movies.map((movie, index) => {
       return (
@@ -14,7 +19,7 @@ class ListPage extends Component {
           title={movie.title}
           poster={movie.poster}
           description={movie.description}
-          genre={movie.genre}
+          clickPoster={this.clickPoster}
         />
       );
     });
