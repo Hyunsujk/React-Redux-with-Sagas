@@ -4,7 +4,9 @@ class Movie extends Component {
   render() {
     return (
       <div>
-        <p>movie title:{this.props.title}</p>
+        <img src={this.props.poster} alt="poster" />
+        <h3>{this.props.title}</h3>
+        <p>{this.props.description}</p>
       </div>
     );
   }

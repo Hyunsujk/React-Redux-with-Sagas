@@ -33,6 +33,15 @@ const genres = (state = [], action) => {
   }
 };
 
+const availableGenres = (state = [], action) => {
+  switch (action.type) {
+    case "SET_AVAIL_GENRES":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // Create the rootSaga generator function
 
 function* getList(action) {
@@ -40,7 +49,13 @@ function* getList(action) {
     const response = yield axios.get("/movie");
     yield put({ type: "SET_MOVIES", payload: response.data });
   } catch (err) {
-    console.warn("Error with getList", err);
+    console.warn("Error with getList, movie", err);
+  }
+  try {
+    const response = yield axios.get("/genre");
+    yield put({ type: "SET_GENRES", payload: response.data });
+  } catch (err) {
+    console.warn("Error with getList, genre", err);
   }
 }
 
@@ -56,6 +71,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
+    availableGenres,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
