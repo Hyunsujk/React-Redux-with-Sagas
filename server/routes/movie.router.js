@@ -47,4 +47,10 @@ router.get("/details/:id", (req, res) => {
     });
 });
 
+router.put("/update", (req, res) => {
+  // const itemId = req.body.id;
+  console.log(req.body);
+  console.log(req.params.id);
+});
+
 module.exports = router;

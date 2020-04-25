@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Movie from "../../Movie/Movie";
 
 class ListPage extends Component {
+  state = {};
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
   }
@@ -33,6 +34,7 @@ class ListPage extends Component {
         />
       );
     });
+
     return <div>{movie}</div>;
   }
 }

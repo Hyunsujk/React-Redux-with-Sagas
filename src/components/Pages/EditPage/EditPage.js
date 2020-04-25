@@ -6,11 +6,20 @@ class EditPage extends Component {
     selectedMovie: [],
   };
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   this.setState({
+  //     selectedMovie: this.props.store.movieDetails,
+  //   });
+  // }
+
+  handleChange = (input) => (event) => {
     this.setState({
-      selectedMovie: this.props.store.movieDetails,
+      selectedMovie: {
+        ...this.state.selectedMovie,
+        [input]: event.target.value,
+      },
     });
-  }
+  };
 
   updateDetails = (event) => {
     event.preventDefault();
@@ -28,11 +37,19 @@ class EditPage extends Component {
         <form>
           <label>
             Title:
-            <input type="text" placeholder="title" />
+            <input
+              type="text"
+              placeholder="title"
+              onChange={this.handleChange("title")}
+            />
           </label>
           <label>
             Description:
-            <input type="text" placeholder="description" />
+            <input
+              type="text"
+              placeholder="description"
+              onChange={this.handleChange("description")}
+            />
           </label>
           <button onSubmit={this.updateDetails}>Save</button>
         </form>
