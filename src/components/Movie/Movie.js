@@ -3,6 +3,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import "../font/fonts.css";
 
 class Movie extends Component {
   render() {
@@ -26,8 +27,24 @@ class Movie extends Component {
             />
 
             <CardContent>
-              <h3 style={{ fontSize: "30px" }}>{this.props.title}</h3>
-              <p style={{ fontSize: "15px" }}>{this.props.description}</p>
+              <h3
+                style={{
+                  fontSize: "30px",
+                  fontFamily: "Noto Sans JP",
+                  fontWeight: "500",
+                }}
+              >
+                {this.props.title}
+              </h3>
+              <p
+                style={{
+                  fontSize: "15px",
+                  fontFamily: "Noto Sans JP",
+                  fontWeight: "300",
+                }}
+              >
+                {this.props.description}
+              </p>
             </CardContent>
           </CardActionArea>
         </Card>
