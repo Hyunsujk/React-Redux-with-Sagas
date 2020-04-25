@@ -1,11 +1,14 @@
 .grid-container {
   display: grid;
   grid-template-columns: 230px 1fr;
+  margin: 0px 0px 60px 0px;
 }
 
 .description {
+  /* display: table-cell;
+  vertical-align: middle; */
   text-align: left;
-  margin: 0px 20px 0px 0px;
+  margin: 0px 60px 0px 0px;
 }
 
 .poster-img {
@@ -14,6 +17,7 @@
 
 .title {
   text-align: center;
+  padding: 15px;
   background-color: lavender;
-  margin: 40px 0px 55px;
+  margin: 40px 0px 45px;
 }
