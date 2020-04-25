@@ -44,8 +44,19 @@ class EditPage extends Component {
 
   render() {
     // console.log(this.state);
-    const movieId = Number(this.props.match.params.id);
+    const id = Number(this.props.match.params.id);
     // console.log(this.props.match.params.id);
+    const selectedMovie = this.props.store.movies.filter((movie) => {
+      return movie.id === id;
+    });
+
+    const movieTitle = selectedMovie.map((info, index) => {
+      return info.title;
+    });
+
+    const movieDescription = selectedMovie.map((info, index) => {
+      return info.description;
+    });
 
     return (
       <div>
@@ -57,6 +68,7 @@ class EditPage extends Component {
               type="text"
               placeholder="title"
               onChange={this.handleChange("title")}
+              value={movieTitle}
             />
           </label>
           <label>
@@ -65,10 +77,11 @@ class EditPage extends Component {
               type="text"
               placeholder="description"
               onChange={this.handleChange("description")}
+              value={movieDescription}
             />
           </label>
         </form>
-        <button onClick={this.updateDetails(movieId)}>Save</button>
+        <button onClick={this.updateDetails(id)}>Save</button>
         <button onClick={this.handleCancel}>Cancel</button>
       </div>
     );
