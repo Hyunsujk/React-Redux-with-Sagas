@@ -9,12 +9,6 @@ class EditPage extends Component {
     },
   };
 
-  // componentDidMount() {
-  //   this.setState({
-  //     selectedMovie: this.props.store.movieDetails,
-  //   });
-  // }
-
   handleChange = (input) => (event) => {
     this.setState({
       selectedMovie: {
@@ -30,6 +24,16 @@ class EditPage extends Component {
       type: "UPDATE_DETAILS",
       payload: this.state.selectedMovie,
     });
+  };
+
+  handleCancel = () => {
+    this.setState({
+      selectedMovie: {
+        title: "",
+        description: "",
+      },
+    });
+    this.props.history.push("/details");
   };
 
   render() {
@@ -56,7 +60,7 @@ class EditPage extends Component {
           </label>
           <button onSubmit={this.updateDetails}>Save</button>
         </form>
-        <button>Cancel</button>
+        <button onClick={this.handleCancel}>Cancel</button>
       </div>
     );
   }
