@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
 
+// get movie data from database
 router.get("/movie", (req, res) => {
   const queryString = `SELECT * FROM "movies"
   ORDER BY "id";`;
@@ -16,6 +17,7 @@ router.get("/movie", (req, res) => {
     });
 });
 
+// get genre for each movie id
 router.get("/genre", (req, res) => {
   const queryString = `SELECT "movies".id, array_agg("genres".name) as "genre" FROM "movies"
   JOIN "movie_genre" ON "movie_genre".movie_id = "movies".id
@@ -32,6 +34,7 @@ router.get("/genre", (req, res) => {
     });
 });
 
+// get movie information of the id (movie and genre combined)
 router.get("/details/:id", (req, res) => {
   let reqId = req.params.id;
   const queryString = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, array_agg("genres".name) as "genre" FROM "movies"
@@ -51,12 +54,10 @@ router.get("/details/:id", (req, res) => {
     });
 });
 
+// update the movie details of the id
 router.put("/update/:id", (req, res) => {
-  // const itemId = req.body.id;
   const item = req.body;
   const itemId = req.params.id;
-  console.log(req.body);
-  console.log(req.params.id);
   const queryString = `UPDATE "movies" set "title" = $1, "description"=$2 WHERE "id"=$3;`;
   pool
     .query(queryString, [item.title, item.description, itemId])
