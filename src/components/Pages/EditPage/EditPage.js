@@ -25,6 +25,7 @@ class EditPage extends Component {
       type: "UPDATE_DETAILS",
       payload: { id: id, update: this.state.selectedMovie },
     });
+    this.props.history.push("/");
   };
 
   handleCancel = () => {
