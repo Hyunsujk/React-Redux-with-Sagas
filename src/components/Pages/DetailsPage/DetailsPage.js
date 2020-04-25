@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import "./DetailsPage.css";
 
 class DetailsPage extends Component {
   componentDidMount() {
@@ -37,11 +39,11 @@ class DetailsPage extends Component {
     const genre = genreOfMovie.map((genre) => {
       return (
         <div key={genre.id}>
-          <div>
+          <div className="detail-genre-container">
             {genre.genre.map((genre, index) => {
               return (
                 <div key={index}>
-                  <p>{genre}</p>
+                  <p className="detail-genre">{genre}</p>
                 </div>
               );
             })}
@@ -54,10 +56,35 @@ class DetailsPage extends Component {
 
     return (
       <div>
-        <button onClick={this.clickBackToList}>Back to List</button>
-        <button onClick={this.clickEdit}>Edit</button>
-        {info}
+        <header className="App-header">
+          <h1 className="App-title">Movie Details</h1>
+        </header>
+
+        <div className="detail-desc">{info}</div>
         {genre}
+
+        <Button
+          onClick={this.clickBackToList}
+          variant="outlined"
+          style={{
+            backgroundColor: "rgb(13, 13, 59)",
+            color: "#fff",
+            margin: "15px 30px",
+          }}
+        >
+          Back to List
+        </Button>
+        <Button
+          onClick={this.clickEdit}
+          variant="outlined"
+          style={{
+            backgroundColor: "rgb(13, 13, 59)",
+            color: "#fff",
+            margin: "15px 30px",
+          }}
+        >
+          Edit
+        </Button>
       </div>
     );
   }
