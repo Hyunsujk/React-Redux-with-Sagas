@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import ListPage from "../Pages/ListPage/ListPage";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import EditPage from "../Pages/EditPage/EditPage";
@@ -12,8 +12,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <Route exact path="/" component={ListPage} />
-          <Route exact path="/details" component={DetailsPage} />
-          <Route exact path="/edit" component={EditPage} />
+          <Route exact path="/details/:id" component={DetailsPage} />
+          <Route exact path="/edit/:id" component={EditPage} />
         </Router>
       </div>
     );

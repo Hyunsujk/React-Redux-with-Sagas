@@ -23,14 +23,14 @@ const movies = (state = [], action) => {
   }
 };
 
-const movieDetails = (state = {}, action) => {
-  switch (action.type) {
-    case "SAVE_DETAILS":
-      return action.payload;
-    default:
-      return state;
-  }
-};
+// const movieDetails = (state = {}, action) => {
+//   switch (action.type) {
+//     case "SAVE_DETAILS":
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// };
 
 // Used to store the movie genres
 const genres = (state = [], action) => {
@@ -42,14 +42,14 @@ const genres = (state = [], action) => {
   }
 };
 
-const availableGenres = (state = [], action) => {
-  switch (action.type) {
-    case "SET_AVAIL_GENRES":
-      return action.payload;
-    default:
-      return state;
-  }
-};
+// const availableGenres = (state = [], action) => {
+//   switch (action.type) {
+//     case "SET_AVAIL_GENRES":
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// };
 
 // Create the rootSaga generator function
 
@@ -60,12 +60,12 @@ function* getList(action) {
   } catch (err) {
     console.warn("Error with getList, movie", err);
   }
-  // try {
-  //   const response = yield axios.get("/genre");
-  //   yield put({ type: "SET_GENRES", payload: response.data });
-  // } catch (err) {
-  //   console.warn("Error with getList, genre", err);
-  // }
+  try {
+    const response = yield axios.get("/genre");
+    yield put({ type: "SET_GENRES", payload: response.data });
+  } catch (err) {
+    console.warn("Error with getList, genre", err);
+  }
 }
 
 // let selectedMovieId;
@@ -106,9 +106,7 @@ const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
   combineReducers({
     movies,
-    movieDetails,
     genres,
-    availableGenres,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)

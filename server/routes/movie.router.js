@@ -3,11 +3,8 @@ const router = express.Router();
 const pool = require("../modules/pool");
 
 router.get("/movie", (req, res) => {
-  const queryString = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, array_agg("genres".name) as "genre" FROM "movies" 
-  JOIN "movie_genre" ON "movie_genre".movie_id = "movies".id
-  JOIN "genres" ON "movie_genre".genre_id = "genres".id
-  GROUP BY "movies".id
-  ORDER BY "movies".id ASC;`;
+  const queryString = `SELECT * FROM "movies"
+  ORDER BY "id";`;
   pool
     .query(queryString)
     .then((responseDB) => {
@@ -19,22 +16,21 @@ router.get("/movie", (req, res) => {
     });
 });
 
-// router.get("/genre", (req, res) => {
-//   const queryString = `SELECT "movies".id, "movies".title, array_agg("genres".name) as "genre" FROM "movies"
-//   JOIN "movie_genre" ON "movie_genre".movie_id = "movies".id
-//   JOIN "genres" ON "movie_genre".genre_id = "genres".id
-//   GROUP BY "movies".id
-//   ORDER BY "movies".id ASC;`;
-//   pool
-//     .query(queryString)
-//     .then((responseDB) => {
-//       res.send(responseDB.rows);
-//     })
-//     .catch((err) => {
-//       console.log("Error:", err);
-//       res.sendStatus(500);
-//     });
-// });
+router.get("/genre", (req, res) => {
+  const queryString = `SELECT "movies".id, array_agg("genres".name) as "genre" FROM "movies"
+  JOIN "movie_genre" ON "movie_genre".movie_id = "movies".id
+  JOIN "genres" ON "movie_genre".genre_id = "genres".id
+  GROUP BY "movies".id;`;
+  pool
+    .query(queryString)
+    .then((responseDB) => {
+      res.send(responseDB.rows);
+    })
+    .catch((err) => {
+      console.log("Error:", err);
+      res.sendStatus(500);
+    });
+});
 
 router.get("/details/:id", (req, res) => {
   let reqId = req.params.id;

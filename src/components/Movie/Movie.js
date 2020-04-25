@@ -15,7 +15,9 @@ class Movie extends Component {
               alt="poster"
             />
           </div>
-          <p className="grid-item description">{this.props.description}</p>
+          <div className="grid-item description">
+            <p>{this.props.description}</p>
+          </div>
         </div>
       </div>
     );
