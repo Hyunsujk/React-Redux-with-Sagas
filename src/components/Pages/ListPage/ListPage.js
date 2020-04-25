@@ -19,7 +19,6 @@ class ListPage extends Component {
       this.props.history.push("/details");
       this.setState({ posterClicked: false });
     }
-    // this.props.history.push("/details");
   };
 
   render() {
