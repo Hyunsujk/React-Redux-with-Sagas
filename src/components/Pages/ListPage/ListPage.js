@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import Movie from "../../Movie/Movie";
 
 class ListPage extends Component {
-  state = {};
+  state = {
+    posterClicked: false,
+  };
+
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
   }
@@ -11,17 +14,16 @@ class ListPage extends Component {
   clickPoster = (id) => (event) => {
     console.log(id);
     this.props.dispatch({ type: "GET_DETAILS", payload: id });
+    this.setState({ posterClicked: true });
+    if (this.state.posterClicked) {
+      this.props.history.push("/details");
+      this.setState({ posterClicked: false });
+    }
+    // this.props.history.push("/details");
   };
 
-  // componentDidUpdate(){
-  //   if(this.props.store.movieDetails === this.)
-  // }
-
-  goDetails() {
-    this.props.history.push("/details");
-  }
-
   render() {
+    console.log(this.props.store.movieDetails);
     const movie = this.props.store.movies.map((movie, index) => {
       return (
         <Movie
