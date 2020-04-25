@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 class EditPage extends Component {
   state = {
@@ -60,29 +62,49 @@ class EditPage extends Component {
 
     return (
       <div>
-        <h1>Edit</h1>
+        <header className="App-header">
+          <h1 className="App-title">Edit Details</h1>
+        </header>
+        <Button
+          variant="outlined"
+          onClick={this.updateDetails(id)}
+          style={{
+            backgroundColor: "rgb(13, 13, 59)",
+            color: "#fff",
+            margin: "15px 30px",
+          }}
+        >
+          Save
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={this.handleCancel}
+          style={{
+            backgroundColor: "rgb(13, 13, 59)",
+            color: "#fff",
+            margin: "15px 30px",
+          }}
+        >
+          Cancel
+        </Button>
         <form>
           <label>
-            Title:
-            <input
+            <TextField
               type="text"
-              placeholder="title"
+              label="title"
               onChange={this.handleChange("title")}
               value={movieTitle}
             />
           </label>
           <label>
-            Description:
-            <input
+            <TextField
               type="text"
-              placeholder="description"
+              label="description"
               onChange={this.handleChange("description")}
               value={movieDescription}
             />
           </label>
         </form>
-        <button onClick={this.updateDetails(id)}>Save</button>
-        <button onClick={this.handleCancel}>Cancel</button>
       </div>
     );
   }
