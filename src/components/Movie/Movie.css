@@ -1,0 +1,19 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+}
+
+.description {
+  text-align: left;
+  margin: 0px 20px 0px 0px;
+}
+
+.poster-img {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  background-color: lavender;
+  margin: 40px 0px 55px;
+}
