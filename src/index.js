@@ -60,12 +60,12 @@ function* getList(action) {
   } catch (err) {
     console.warn("Error with getList, movie", err);
   }
-  try {
-    const response = yield axios.get("/genre");
-    yield put({ type: "SET_GENRES", payload: response.data });
-  } catch (err) {
-    console.warn("Error with getList, genre", err);
-  }
+  // try {
+  //   const response = yield axios.get("/genre");
+  //   yield put({ type: "SET_GENRES", payload: response.data });
+  // } catch (err) {
+  //   console.warn("Error with getList, genre", err);
+  // }
 }
 
 let selectedMovieId;
