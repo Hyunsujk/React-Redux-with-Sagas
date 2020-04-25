@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 
 class EditPage extends Component {
   state = {
-    selectedMovie: [],
+    selectedMovie: {
+      title: "",
+      description: "",
+    },
   };
 
   // componentDidMount() {

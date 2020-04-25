@@ -68,8 +68,11 @@ function* getList(action) {
   }
 }
 
+let selectedMovieId;
+
 function* getDetails(action) {
   try {
+    selectedMovieId = action.payload;
     const response = yield axios.get(`/details/${action.payload}`);
     yield put({ type: "SAVE_DETAILS", payload: response.data });
   } catch (err) {
@@ -79,7 +82,10 @@ function* getDetails(action) {
 
 function* updateDetails(action) {
   try {
-    const response = yield axios.put("/update", action.payload);
+    const response = yield axios.put(
+      `/update/${selectedMovieId}`,
+      action.payload
+    );
     yield put({ type: "SET_MOVIES", payload: response.data });
     yield put({ type: "SET_GENRES", payload: response.data });
   } catch (err) {

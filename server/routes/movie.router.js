@@ -47,10 +47,22 @@ router.get("/details/:id", (req, res) => {
     });
 });
 
-router.put("/update", (req, res) => {
+router.put("/update/:id", (req, res) => {
   // const itemId = req.body.id;
+  const item = req.body;
+  const itemId = req.params.id;
   console.log(req.body);
   console.log(req.params.id);
+  const queryString = `UPDATE "movies" set "title" = $1, "description"=$2 WHERE "id"=$3;`;
+  pool
+    .query(queryString, [item.title, item.description, itemId])
+    .then((responseDb) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log("Error updating details", err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
