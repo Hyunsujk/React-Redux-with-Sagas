@@ -10,8 +10,15 @@ class ListPage extends Component {
   clickPoster = (id) => (event) => {
     console.log(id);
     this.props.dispatch({ type: "GET_DETAILS", payload: id });
-    // this.props.history.push("/details");
   };
+
+  // componentDidUpdate(){
+  //   if(this.props.store.movieDetails === this.)
+  // }
+
+  goDetails() {
+    this.props.history.push("/details");
+  }
 
   render() {
     const movie = this.props.store.movies.map((movie, index) => {

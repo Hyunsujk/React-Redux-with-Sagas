@@ -23,7 +23,7 @@ const movies = (state = [], action) => {
   }
 };
 
-const movieDetails = (state = [], action) => {
+const movieDetails = (state = {}, action) => {
   switch (action.type) {
     case "SAVE_DETAILS":
       return action.payload;
@@ -70,7 +70,6 @@ function* getList(action) {
 
 function* getDetails(action) {
   try {
-    console.log(action.payload);
     const response = yield axios.get(`/details/${action.payload}`);
     yield put({ type: "SAVE_DETAILS", payload: response.data });
   } catch (err) {
@@ -78,9 +77,20 @@ function* getDetails(action) {
   }
 }
 
+function* updateDetails(action) {
+  try {
+    const response = yield axios.put("/update", action.payload);
+    yield put({ type: "SET_MOVIES", payload: response.data });
+    yield put({ type: "SET_GENRES", payload: response.data });
+  } catch (err) {
+    console.warn("Error with updating details", err);
+  }
+}
+
 function* rootSaga() {
   yield takeEvery("GET_LIST", getList);
   yield takeEvery("GET_DETAILS", getDetails);
+  yield takeEvery("UPDATE_DETAILS", updateDetails);
 }
 
 // Create sagaMiddleware
