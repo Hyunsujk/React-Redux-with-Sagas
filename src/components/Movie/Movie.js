@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Grid,
+} from "@material-ui/core/";
 import "../font/fonts.css";
 
 class Movie extends Component {
@@ -13,14 +16,11 @@ class Movie extends Component {
   };
   render() {
     return (
-      <div>
+      <Grid item xs={6} sm={3}>
         <Card
           variant="outlined"
           style={{
-            width: "30%",
-            marginLeft: "35%",
-            marginTop: "5%",
-            marginBottom: "5%",
+            margin: "5%",
           }}
         >
           <CardActionArea>
@@ -53,7 +53,7 @@ class Movie extends Component {
             </CardContent>
           </CardActionArea>
         </Card>
-      </div>
+      </Grid>
     );
   }
 }

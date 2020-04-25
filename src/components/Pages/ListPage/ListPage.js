@@ -2,19 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Movie from "../../Movie/Movie";
 import "./ListPage.css";
+import Grid from "@material-ui/core/Grid";
 
 class ListPage extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
   }
 
-  // clickPoster = (id) => (event) => {
-  //   console.log(id);
-  //   this.props.history.push(`/details/${id}`);
-  // };
-
   render() {
-    console.log(this.props.store.movieDetails);
     const movie = this.props.store.movies.map((movie, index) => {
       return <Movie key={index} movie={movie} />;
     });
@@ -22,9 +17,11 @@ class ListPage extends Component {
     return (
       <div>
         <header className="App-header">
-          <h1 className="App-title">Movie List</h1>
+          <h1 className="App-title">MOVIE LIST</h1>
         </header>
-        {movie}
+        <Grid container spacing={2}>
+          {movie}
+        </Grid>
       </div>
     );
   }
