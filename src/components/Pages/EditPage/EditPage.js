@@ -9,6 +9,10 @@ class EditPage extends Component {
     },
   };
 
+  componentDidMount() {
+    this.props.dispatch({ type: "GET_LIST" });
+  }
+
   handleChange = (input) => (event) => {
     this.setState({
       selectedMovie: {
@@ -25,7 +29,7 @@ class EditPage extends Component {
       type: "UPDATE_DETAILS",
       payload: { id: id, update: this.state.selectedMovie },
     });
-    this.props.history.push("/");
+    this.props.history.push(`/details/${this.props.match.params.id}`);
   };
 
   handleCancel = () => {
@@ -35,16 +39,13 @@ class EditPage extends Component {
         description: "",
       },
     });
-    this.props.history.push("/details");
+    this.props.history.push(`/details/${this.props.match.params.id}`);
   };
 
   render() {
-    console.log(this.state);
-    const movieId = this.props.store.movieDetails.map((movie, index) => {
-      return movie.id;
-    });
-    console.log(movieId);
-    // console.log(movieId.props.children);
+    // console.log(this.state);
+    const movieId = Number(this.props.match.params.id);
+    // console.log(this.props.match.params.id);
 
     return (
       <div>
@@ -69,7 +70,6 @@ class EditPage extends Component {
         </form>
         <button onClick={this.updateDetails(movieId)}>Save</button>
         <button onClick={this.handleCancel}>Cancel</button>
-        {movieId}
       </div>
     );
   }

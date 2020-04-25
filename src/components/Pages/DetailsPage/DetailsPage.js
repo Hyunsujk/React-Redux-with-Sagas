@@ -11,7 +11,7 @@ class DetailsPage extends Component {
   };
 
   clickEdit = () => {
-    this.props.history.push("/edit");
+    this.props.history.push(`/edit/${this.props.match.params.id}`);
   };
 
   render() {

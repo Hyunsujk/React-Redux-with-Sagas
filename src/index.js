@@ -82,10 +82,7 @@ function* getDetails(action) {
 
 function* updateDetails(action) {
   try {
-    const response = yield axios.put(
-      `/update/${action.payload.id}`,
-      action.payload.update
-    );
+    yield axios.put(`/update/${action.payload.id}`, action.payload.update);
     // yield put({ type: "SET_MOVIES", payload: response.data });
     // yield put({ type: "SET_GENRES", payload: response.data });
   } catch (err) {
