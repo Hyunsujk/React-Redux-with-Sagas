@@ -23,6 +23,15 @@ const movies = (state = [], action) => {
   }
 };
 
+const movieDetails = (state = [], action) => {
+  switch (action.type) {
+    case "SAVE_DETAILS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // Used to store the movie genres
 const genres = (state = [], action) => {
   switch (action.type) {
@@ -59,8 +68,19 @@ function* getList(action) {
   }
 }
 
+function* getDetails(action) {
+  try {
+    console.log(action.payload);
+    const response = yield axios.get(`/details/${action.payload}`);
+    yield put({ type: "SAVE_DETAILS", payload: response.data });
+  } catch (err) {
+    console.warn("Error with getting details of the movie", err);
+  }
+}
+
 function* rootSaga() {
   yield takeEvery("GET_LIST", getList);
+  yield takeEvery("GET_DETAILS", getDetails);
 }
 
 // Create sagaMiddleware
@@ -70,6 +90,7 @@ const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
   combineReducers({
     movies,
+    movieDetails,
     genres,
     availableGenres,
   }),
