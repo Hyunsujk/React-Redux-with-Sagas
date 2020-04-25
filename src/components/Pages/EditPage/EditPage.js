@@ -18,11 +18,12 @@ class EditPage extends Component {
     });
   };
 
-  updateDetails = (event) => {
-    event.preventDefault();
+  updateDetails = (id) => (event) => {
+    console.log("update");
+    console.log(id);
     this.props.dispatch({
       type: "UPDATE_DETAILS",
-      payload: this.state.selectedMovie,
+      payload: { id: id, update: this.state.selectedMovie },
     });
   };
 
@@ -38,6 +39,12 @@ class EditPage extends Component {
 
   render() {
     console.log(this.state);
+    const movieId = this.props.store.movieDetails.map((movie, index) => {
+      return movie.id;
+    });
+    console.log(movieId);
+    // console.log(movieId.props.children);
+
     return (
       <div>
         <h1>Edit</h1>
@@ -58,9 +65,10 @@ class EditPage extends Component {
               onChange={this.handleChange("description")}
             />
           </label>
-          <button onSubmit={this.updateDetails}>Save</button>
         </form>
+        <button onClick={this.updateDetails(movieId)}>Save</button>
         <button onClick={this.handleCancel}>Cancel</button>
+        {movieId}
       </div>
     );
   }
