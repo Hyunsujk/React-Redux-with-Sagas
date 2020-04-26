@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import "./DetailsPage.css";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
+import { faListAlt } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class DetailsPage extends Component {
@@ -79,6 +80,7 @@ class DetailsPage extends Component {
             margin: "15px 30px",
           }}
         >
+          <FontAwesomeIcon icon={faListAlt} />
           Back to List
         </Button>
         <Button

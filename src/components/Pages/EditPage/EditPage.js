@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { faSave } from "@fortawesome/free-regular-svg-icons";
+import { faWindowClose } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class EditPage extends Component {
   state = {
@@ -86,7 +89,10 @@ class EditPage extends Component {
             margin: "15px 30px",
           }}
         >
-          Save
+          <text>
+            <FontAwesomeIcon icon={faSave} />
+            Save
+          </text>
         </Button>
         <Button
           variant="outlined"
@@ -97,6 +103,7 @@ class EditPage extends Component {
             margin: "15px 30px",
           }}
         >
+          <FontAwesomeIcon icon={faWindowClose} />
           Cancel
         </Button>
         <form>
