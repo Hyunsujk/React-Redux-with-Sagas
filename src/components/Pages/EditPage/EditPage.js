@@ -78,7 +78,7 @@ class EditPage extends Component {
     return (
       <div>
         <header className="App-header">
-          <h1 className="App-title">Edit Details</h1>
+          <h1 className="App-title">EDIT DETAILS</h1>
         </header>
         <Button
           variant="outlined"
