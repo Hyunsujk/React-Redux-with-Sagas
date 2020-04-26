@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
+          {/* create path for each page */}
           <Route exact path="/" component={ListPage} />
           <Route exact path="/details/:id" component={DetailsPage} />
           <Route exact path="/edit/:id" component={EditPage} />
