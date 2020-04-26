@@ -112,6 +112,7 @@ class EditPage extends Component {
             <TextField
               type="text"
               label="title"
+              style={{ width: 500, margin: "30px" }}
               onChange={this.handleChange("title")}
               value={this.state.selectedMovie.title}
             />
@@ -120,6 +121,8 @@ class EditPage extends Component {
             <TextField
               type="text"
               label="description"
+              multiline
+              style={{ width: 500, margin: "30px", rows: 5 }}
               onChange={this.handleChange("description")}
               value={this.state.selectedMovie.description}
             />
