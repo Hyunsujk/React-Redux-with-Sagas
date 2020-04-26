@@ -2,16 +2,21 @@
   text-align: center;
 }
 
-
 .App-header {
-  background-color: #222;
   height: 150px;
+  background-color: #1b262c;
   padding: 20px;
   color: white;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 900;
+}
+
+.App-body {
+  background-color: #0f4c75;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3em;
 }
 
 .App-intro {
@@ -19,6 +24,12 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
+/* imported google fonts to use for the headers */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap");
