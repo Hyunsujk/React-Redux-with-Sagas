@@ -45,7 +45,6 @@ router.get("/details/:id", (req, res) => {
   pool
     .query(queryString, [reqId])
     .then((responseDB) => {
-      // console.log(responseDB.rows);
       res.send(responseDB.rows);
     })
     .catch((err) => {
