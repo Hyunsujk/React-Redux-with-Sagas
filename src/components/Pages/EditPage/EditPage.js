@@ -14,6 +14,31 @@ class EditPage extends Component {
   // when the components are mounted, do GET_LIST
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
+    this.getMovieDetails();
+  }
+
+  getMovieDetails() {
+    // get the id from url
+    const id = Number(this.props.match.params.id);
+    // get movie information of the id
+    const selectedMovie = this.props.store.movies.filter((movie) => {
+      return movie.id === id;
+    });
+    // get title of the movie
+    const movieTitle = selectedMovie.map((info, index) => {
+      return info.title;
+    });
+    // get description of the movie
+    const movieDescription = selectedMovie.map((info, index) => {
+      return info.description;
+    });
+    // update the state with the movie title and movie description
+    this.setState({
+      selectedMovie: {
+        title: movieTitle,
+        description: movieDescription,
+      },
+    });
   }
 
   // when the user put the information in the input field, capture it and update the state
@@ -47,24 +72,6 @@ class EditPage extends Component {
   };
 
   render() {
-    // get the id from url
-    const id = Number(this.props.match.params.id);
-
-    // get movie information of the id
-    const selectedMovie = this.props.store.movies.filter((movie) => {
-      return movie.id === id;
-    });
-
-    // get title of the movie
-    const movieTitle = selectedMovie.map((info, index) => {
-      return info.title;
-    });
-
-    // get description of the movie
-    const movieDescription = selectedMovie.map((info, index) => {
-      return info.description;
-    });
-
     return (
       <div>
         <header className="App-header">
@@ -72,7 +79,7 @@ class EditPage extends Component {
         </header>
         <Button
           variant="outlined"
-          onClick={this.updateDetails(id)}
+          onClick={this.updateDetails(Number(this.props.match.params.id))}
           style={{
             backgroundColor: "rgb(13, 13, 59)",
             color: "#fff",
@@ -99,7 +106,7 @@ class EditPage extends Component {
               type="text"
               label="title"
               onChange={this.handleChange("title")}
-              value={movieTitle}
+              value={this.state.selectedMovie.title}
             />
           </label>
           <label>
@@ -107,7 +114,7 @@ class EditPage extends Component {
               type="text"
               label="description"
               onChange={this.handleChange("description")}
-              value={movieDescription}
+              value={this.state.selectedMovie.description}
             />
           </label>
         </form>
