@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Movie from "../../Movie/Movie";
-import "./ListPage.css";
 import Grid from "@material-ui/core/Grid";
 
 class ListPage extends Component {
+  // when the components are mounted, do GET_LIST
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
   }
 
   render() {
+    // get information from movies reducer and display one by one
     const movie = this.props.store.movies.map((movie, index) => {
       return <Movie key={index} movie={movie} />;
     });
@@ -19,9 +20,11 @@ class ListPage extends Component {
         <header className="App-header">
           <h1 className="App-title">MOVIE LIST</h1>
         </header>
-        <Grid container spacing={2}>
-          {movie}
-        </Grid>
+        <div className="App-body">
+          <Grid container spacing={2}>
+            {movie}
+          </Grid>
+        </div>
       </div>
     );
   }
