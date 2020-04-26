@@ -21,7 +21,7 @@ class ListPage extends Component {
           <h1 className="App-title">MOVIE LIST</h1>
         </header>
         <div className="App-body">
-          <Grid container spacing={2}>
+          <Grid container spacing={8}>
             {movie}
           </Grid>
         </div>
