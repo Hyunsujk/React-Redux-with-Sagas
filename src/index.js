@@ -23,15 +23,6 @@ const movies = (state = [], action) => {
   }
 };
 
-// const movieDetails = (state = {}, action) => {
-//   switch (action.type) {
-//     case "SAVE_DETAILS":
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// };
-
 // Used to store the movie genres
 const genres = (state = [], action) => {
   switch (action.type) {
@@ -42,17 +33,9 @@ const genres = (state = [], action) => {
   }
 };
 
-// const availableGenres = (state = [], action) => {
-//   switch (action.type) {
-//     case "SET_AVAIL_GENRES":
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// };
-
 // Create the rootSaga generator function
 
+// get movies from the database and update movies reducer and get genres from database and update genres reducer
 function* getList(action) {
   try {
     const response = yield axios.get("/movie");
@@ -68,31 +51,18 @@ function* getList(action) {
   }
 }
 
-// let selectedMovieId;
-
-function* getDetails(action) {
-  try {
-    // selectedMovieId = action.payload;
-    const response = yield axios.get(`/details/${action.payload}`);
-    yield put({ type: "SAVE_DETAILS", payload: response.data });
-  } catch (err) {
-    console.warn("Error with getting details of the movie", err);
-  }
-}
-
+// update movie details of the id with the values
 function* updateDetails(action) {
   try {
     yield axios.put(`/update/${action.payload.id}`, action.payload.update);
-    // yield put({ type: "SET_MOVIES", payload: response.data });
-    // yield put({ type: "SET_GENRES", payload: response.data });
   } catch (err) {
     console.warn("Error with updating details", err);
   }
 }
 
+// depends on the call, do function for the call
 function* rootSaga() {
   yield takeEvery("GET_LIST", getList);
-  yield takeEvery("GET_DETAILS", getDetails);
   yield takeEvery("UPDATE_DETAILS", updateDetails);
 }
 
