@@ -10,12 +10,13 @@ import {
 import "../font/fonts.css";
 
 class Movie extends Component {
+  //capture id of the clicked movie and guide the user to the details page with the id
   clickPoster = (id) => (event) => {
-    console.log(id);
     this.props.history.push(`/details/${id}`);
   };
   render() {
     return (
+      // in xs size screen, each card takes half of the screen, in small size screen, each card takes 1/4 of the screen
       <Grid item xs={6} sm={3}>
         <Card
           variant="outlined"
@@ -23,6 +24,7 @@ class Movie extends Component {
             margin: "5%",
           }}
         >
+          {/* CardActionArea sets an area that will react to hover action */}
           <CardActionArea>
             <CardMedia
               component="img"
