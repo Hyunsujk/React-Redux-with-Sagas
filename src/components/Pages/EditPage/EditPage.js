@@ -11,10 +11,12 @@ class EditPage extends Component {
     },
   };
 
+  // when the components are mounted, do GET_LIST
   componentDidMount() {
     this.props.dispatch({ type: "GET_LIST" });
   }
 
+  // when the user put the information in the input field, capture it and update the state
   handleChange = (input) => (event) => {
     this.setState({
       selectedMovie: {
@@ -24,9 +26,8 @@ class EditPage extends Component {
     });
   };
 
+  // update details of the movie with the id, then bring the user back to the details page of the id
   updateDetails = (id) => (event) => {
-    console.log("update");
-    console.log(id);
     this.props.dispatch({
       type: "UPDATE_DETAILS",
       payload: { id: id, update: this.state.selectedMovie },
@@ -34,6 +35,7 @@ class EditPage extends Component {
     this.props.history.push(`/details/${this.props.match.params.id}`);
   };
 
+  // reset the state and bring the user back to the details page of the id
   handleCancel = () => {
     this.setState({
       selectedMovie: {
@@ -45,17 +47,20 @@ class EditPage extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    // get the id from url
     const id = Number(this.props.match.params.id);
-    // console.log(this.props.match.params.id);
+
+    // get movie information of the id
     const selectedMovie = this.props.store.movies.filter((movie) => {
       return movie.id === id;
     });
 
+    // get title of the movie
     const movieTitle = selectedMovie.map((info, index) => {
       return info.title;
     });
 
+    // get description of the movie
     const movieDescription = selectedMovie.map((info, index) => {
       return info.description;
     });
@@ -88,6 +93,7 @@ class EditPage extends Component {
           Cancel
         </Button>
         <form>
+          {/* grab the value from the reducer and display it in the input field */}
           <label>
             <TextField
               type="text"
