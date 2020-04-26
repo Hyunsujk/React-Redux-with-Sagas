@@ -34,25 +34,6 @@ router.get("/genre", (req, res) => {
     });
 });
 
-// get movie information of the id (movie and genre combined)
-router.get("/details/:id", (req, res) => {
-  let reqId = req.params.id;
-  const queryString = `SELECT "movies".id, "movies".title, "movies".poster, "movies".description, array_agg("genres".name) as "genre" FROM "movies"
-  JOIN "movie_genre" ON "movie_genre".movie_id = "movies".id
-  JOIN "genres" ON "movie_genre".genre_id = "genres".id
-  WHERE "movies".id =$1
-  GROUP BY "movies".id`;
-  pool
-    .query(queryString, [reqId])
-    .then((responseDB) => {
-      res.send(responseDB.rows);
-    })
-    .catch((err) => {
-      console.log("Error getting the movie details");
-      res.sendStatus(500);
-    });
-});
-
 // update the movie details of the id
 router.put("/update/:id", (req, res) => {
   const item = req.body;
