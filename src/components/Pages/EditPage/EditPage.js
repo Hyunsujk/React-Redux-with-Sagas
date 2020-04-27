@@ -122,7 +122,7 @@ class EditPage extends Component {
               type="text"
               label="description"
               multiline
-              style={{ width: 500, margin: "30px", rows: 5 }}
+              style={{ width: 500, margin: "30px" }}
               onChange={this.handleChange("description")}
               value={this.state.selectedMovie.description}
             />
